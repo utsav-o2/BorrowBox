@@ -1,5 +1,12 @@
 import './App.css';
 
+const items=[
+  {id:1, name:"Scientific Calculator",category:"Electronics",owner:"Utsav"},
+  {id:2, name:"Web Tech Reference Book",category:"Books",owner:"Maitry"},
+  {id:3, name:"Laptop Charger",category:"Electronics",owner:"Utsav"},
+  {id:4, name:"Portable Projector",category:"Electronics",owner:"Maitry"}
+];
+
 function App(){
   return (
     <div>
@@ -18,7 +25,26 @@ function App(){
         <p>
           A simple place for students to share and borrow useful items.
         </p>
-        <button>Explore Items</button>
+        <button onClick={() => document.getElementById('items').scrollIntoView()}>
+          Explore Items
+        </button>
+      </section>
+
+      <section id="items" className="items-section">
+        <h2>Available Items</h2>
+        <p>Find something useful to borrow</p>
+
+        <div className="items-conatainer">
+          {items.map((item)=> (
+            <div className="item-card" key={item.id}>
+              <div className="item-icon">{item.icon}</div>
+              <h3>{item.name}</h3>
+              <p>Category: {item.category}</p>
+              <p>Shared by: {item.owner}</p>
+              <button>Borrow</button>
+            </div>
+          ))}
+        </div>
       </section>
     </div>
   );
