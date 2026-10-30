@@ -1,3 +1,13 @@
+import { useState } from 'react';
+
+function handleBorrow(id) {
+  if (requestedItems.includes(id)) {
+    setRequestedItems(requestedItems.filter(itemId => itemId !== id));
+  } else {
+    setRequestedItems([...requestedItems, id]);
+  }
+}
+
 import './App.css';
 
 const items=[
@@ -8,6 +18,7 @@ const items=[
 ];
 
 function App(){
+  const [requestedItems, setRequestedItems] = useState([]);
   return (
     <div>
       <header>
@@ -41,7 +52,11 @@ function App(){
               <h3>{item.name}</h3>
               <p>Category: {item.category}</p>
               <p>Shared by: {item.owner}</p>
-              <button>Borrow</button>
+              
+              <button onClick={() => handleBorrow(item.id)}>
+                {requestedItems.includes(item.id) ? "Requested ✓" : "Borrow"}
+              </button>
+
             </div>
           ))}
         </div>

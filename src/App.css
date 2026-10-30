@@ -94,3 +94,11 @@ button:hover{
     grid-template-columns: 1fr;
   }
 }
+
+.requested-btn {
+  background-color: #2e8b57;
+}
+
+.requested-btn:hover {
+  background-color: #256f46;
+}
