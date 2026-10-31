@@ -12,6 +12,11 @@ const items = [
 function App() {
 
   const [requestedItems, setRequestedItems] = useState([]);
+  const [allItems, setAllItems] = useState(items);
+
+  const [itemName, setItemName] = useState('');
+  const [category, setCategory] = useState('Electronics');
+  const [owner, setOwner] = useState('');
 
   function handleBorrow(id) {
     if (requestedItems.includes(id)) {
@@ -21,6 +26,29 @@ function App() {
     }
   }
 
+
+function addItem(e) {
+  e.preventDefault();
+
+  if (itemName.trim() === '' || owner.trim() === '') {
+    return;
+  }
+
+  const newItem = {
+    id: Date.now(),
+    name: itemName.trim(),
+    category: category,
+    owner: owner.trim(),
+  };
+
+  setAllItems([...allItems, newItem]);
+
+  setItemName('');
+  setCategory('Electronics');
+  setOwner('');
+}
+
+
   return (
     <div>
       <header>
@@ -29,6 +57,7 @@ function App() {
         <nav>
           <a href="#home">Home</a>
           <a href="#items">Browse Items</a>
+          <a href="#add-item">Add Item</a>
           <a href="#about">About</a>
         </nav>
       </header>
@@ -49,10 +78,8 @@ function App() {
         <p>Find something useful to borrow</p>
 
         <div className="items-container">
-          {items.map((item) => (
+          {allItems.map((item) => (
             <div className="item-card" key={item.id}>
-
-              <div className="item-icon">{item.icon}</div>
 
               <h3>{item.name}</h3>
               <p>Category: {item.category}</p>
@@ -69,6 +96,45 @@ function App() {
           ))}
         </div>
       </section>
+
+
+      <section id="add-item" className="add-section">
+      <h2>Add Your Item</h2>
+      <p>Have something useful? Share it with others.</p>
+
+      <form onSubmit={addItem}>
+
+        <input
+        type="text"
+        placeholder="Item Name"
+        value={itemName}
+        onChange={(e) => setItemName(e.target.value)}
+        required
+      />
+
+      <select
+        value={category}
+        onChange={(e) => setCategory(e.target.value)}
+      >
+        <option value="Electronics">Electronics</option>
+        <option value="Books">Books</option>
+        <option value="Stationery">Stationery</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <input
+        type="text"
+        placeholder="Owner Name"
+        value={owner}
+        onChange={(e) => setOwner(e.target.value)}
+        required
+      />
+
+      <button type="submit">Add Item</button>
+
+    </form>
+  </section>
+
     </div>
   );
 }
