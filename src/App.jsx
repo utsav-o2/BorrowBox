@@ -26,28 +26,26 @@ function App() {
     }
   }
 
+  function addItem(e) {
+    e.preventDefault();
 
-function addItem(e) {
-  e.preventDefault();
+    if (itemName.trim() === '' || owner.trim() === '') {
+      return;
+    }
 
-  if (itemName.trim() === '' || owner.trim() === '') {
-    return;
+    const newItem = {
+      id: Date.now(),
+      name: itemName.trim(),
+      category: category,
+      owner: owner.trim(),
+    };
+
+    setAllItems([...allItems, newItem]);
+
+    setItemName('');
+    setCategory('Electronics');
+    setOwner('');
   }
-
-  const newItem = {
-    id: Date.now(),
-    name: itemName.trim(),
-    category: category,
-    owner: owner.trim(),
-  };
-
-  setAllItems([...allItems, newItem]);
-
-  setItemName('');
-  setCategory('Electronics');
-  setOwner('');
-}
-
 
   return (
     <div>
@@ -97,43 +95,62 @@ function addItem(e) {
         </div>
       </section>
 
-
       <section id="add-item" className="add-section">
-      <h2>Add Your Item</h2>
-      <p>Have something useful? Share it with others.</p>
+        <h2>Add Your Item</h2>
+        <p>Have something useful? Share it with others.</p>
 
-      <form onSubmit={addItem}>
+        <form onSubmit={addItem}>
 
-        <input
-        type="text"
-        placeholder="Item Name"
-        value={itemName}
-        onChange={(e) => setItemName(e.target.value)}
-        required
-      />
+          <input
+            type="text"
+            placeholder="Item Name"
+            value={itemName}
+            onChange={(e) => setItemName(e.target.value)}
+            required
+          />
 
-      <select
-        value={category}
-        onChange={(e) => setCategory(e.target.value)}
-      >
-        <option value="Electronics">Electronics</option>
-        <option value="Books">Books</option>
-        <option value="Stationery">Stationery</option>
-        <option value="Other">Other</option>
-      </select>
+          <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          >
+            <option value="Electronics">Electronics</option>
+            <option value="Books">Books</option>
+            <option value="Stationery">Stationery</option>
+            <option value="Other">Other</option>
+          </select>
 
-      <input
-        type="text"
-        placeholder="Owner Name"
-        value={owner}
-        onChange={(e) => setOwner(e.target.value)}
-        required
-      />
+          <input
+            type="text"
+            placeholder="Owner Name"
+            value={owner}
+            onChange={(e) => setOwner(e.target.value)}
+            required
+          />
 
-      <button type="submit">Add Item</button>
+          <button type="submit">Add Item</button>
 
-    </form>
-  </section>
+        </form>
+      </section>
+
+      <section id="about" className="about-section">
+        <h2>About BorrowBox</h2>
+
+        <p>
+          BorrowBox is a simple website made for college students
+          to share and borrow useful items.
+        </p>
+
+        <p>
+          Students can view available items, request to borrow them,
+          and add their own items to share with others.
+        </p>
+      </section>
+
+      <footer>
+        <h3>BorrowBox</h3>
+        <p>Web Technology Project</p>
+        <p>© 2026 BorrowBox</p>
+      </footer>
 
     </div>
   );
