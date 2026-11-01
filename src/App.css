@@ -1,40 +1,54 @@
-header{
+
+/* Navbar */
+
+header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 40px;
   background-color: white;
+  border-bottom: 1px solid #ddd;
 }
 
-header h2{
+header h2 {
   color: royalblue;
+  margin: 0;
 }
 
-nav a{
-  margin-left: 25px;
+nav {
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
   text-decoration: none;
   color: #333;
+  font-size: 15px;
 }
 
-nav a:hover{
+nav a:hover {
   color: royalblue;
 }
 
-section{
+
+/* Home Section */
+
+section {
   text-align: center;
   padding: 80px 20px;
   background-color: #eaf1ff;
 }
 
-section h1{
+section h1 {
   font-size: 36px;
   margin-bottom: 10px;
 }
-section p{
+
+section p {
   color: #555;
 }
 
-button{
+button {
   background-color: royalblue;
   color: white;
   padding: 12px 20px;
@@ -44,56 +58,63 @@ button{
   cursor: pointer;
 }
 
-button:hover{
+button:hover {
   background-color: #284bb3;
 }
 
-.items-section{
+
+/* Available Items Section */
+
+.items-section {
   background-color: #f5f7fb;
   padding: 50px 30px;
 }
 
-.items-section h2{
+.items-section h2 {
   font-size: 28px;
   margin-bottom: 10px;
 }
 
-.items-container{
+.items-container {
   display: grid;
-  grid-template-columns: repeat(2,1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
   max-width: 900px;
   margin: 30px auto 0;
 }
 
-.item-card{
+.item-card {
   background-color: white;
-  padding: 20px;
-  border:1px solid #e4e7ed;
+  padding: 25px;
+  border: 1px solid #e4e7ed;
   border-radius: 10px;
   text-align: left;
+  transition: 0.2s;
 }
 
-.item-card h3{
-  margin-top: 18px;
-  margin-bottom: 10px;
+.item-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.item-card p{
-  font-size: 14 px;
+.item-card h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  color: #222;
+}
+
+.item-card p {
+  font-size: 14px;
   margin-bottom: 8px;
+  color: #666;
 }
 
-.itemm-card button{
+.item-card button {
   width: 100%;
   margin-top: 15px;
 }
 
-@media( max width: 600px){
-  .items-container{
-    grid-template-columns: 1fr;
-  }
-}
+
+/* Requested Button */
 
 .requested-btn {
   background-color: #2e8b57;
@@ -101,6 +122,37 @@ button:hover{
 
 .requested-btn:hover {
   background-color: #256f46;
+}
+
+
+/* Add Item Form */
+
+.add-section {
+  background-color: #eaf1ff;
+  padding: 50px 20px;
+}
+
+.add-section form {
+  background-color: white;
+  max-width: 420px;
+  margin: 25px auto;
+  padding: 25px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.add-section input,
+.add-section select {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+.add-section button {
+  margin-top: 5px;
 }
 
 
@@ -124,6 +176,7 @@ button:hover{
   color: #555;
 }
 
+
 /* Footer */
 
 footer {
@@ -140,4 +193,51 @@ footer h3 {
 footer p {
   margin: 5px 0;
   font-size: 14px;
+}
+
+
+/* Mobile Screen */
+
+@media (max-width: 600px) {
+
+  header {
+    flex-direction: column;
+    padding: 15px;
+    gap: 10px;
+  }
+
+  nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  nav a {
+    font-size: 14px;
+  }
+
+  section {
+    padding: 40px 15px;
+  }
+
+  section h1 {
+    font-size: 28px;
+  }
+
+  .items-container {
+    grid-template-columns: 1fr;
+  }
+
+  .item-card {
+    padding: 18px;
+  }
+
+  .add-section form {
+    width: 100%;
+    padding: 18px;
+  }
+
+  footer {
+    padding: 20px 10px;
+  }
 }
